@@ -1,0 +1,44 @@
+* {
+	padding: 0px;
+	margin: 0px auto;
+	font-family: "Helvetica";
+	outline: dashed green thin;
+}
+
+#wrapper {
+	width: 480px;
+}
+
+h1, form, .error {
+	text-align: center;
+	margin-top: 10px;
+}
+
+.error {
+	color: red;
+}
+
+#valid-email {
+	background-color: green;
+	border: 2px solid black;
+}
+
+#valid-email {
+	margin: 15px 0px 15px 30px;
+	width: 65%;
+	line-height: 25px;
+	text-align: center;
+	padding: 5px;
+}
+
+h3 {
+	border-bottom: 2px solid black;
+	display: inline-block;
+}
+th {
+	padding-right: 100px;
+	padding-top: 5px;
+}
+td {
+	padding: 5px 0px;
+}
