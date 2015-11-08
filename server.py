@@ -1,9 +1,10 @@
 from flask import Flask, request, redirect, render_template, session, flash
-#from mysqlconnection import MySQLConnector
+from mysqlconnection import MySQLConnector
 import re
+from datetime import datetime
 app = Flask(__name__)
 app.secret_key = 'maricIsAwesome'
-#mysql = MySQLConnector('emaildb')
+mysql = MySQLConnector('emaildb')
 EMAIL_REGEX = re.compile(r'^[a-za-z0-9\.\+_-]+@[a-za-z0-9\._-]+\.[a-za-z]*$')
 
 @app.route('/')
@@ -13,9 +14,15 @@ def index():
 
 @app.route('/process', methods=['POST'])
 def process():
+	emailsdb = mysql.fetch('SELECT * FROM emails')
 	email = request.form['email']
+
 	if not EMAIL_REGEX.match(email) or len(email) < 1:
 		flash('Email is not valid!')
 		return redirect('/')
-	return render_template('success.html')
+
+	query = "INSERT INTO emails (email_address, created_at)\
+			VALUES ('{}', NOW())".format(request.form['email'])
+	mysql.run_mysql_query(query)
+	return render_template('success.html', emailsdb=emailsdb)
 app.run(debug=True)

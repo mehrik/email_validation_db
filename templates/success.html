@@ -20,9 +20,15 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td>maricsobreo@msn.com</td>
+						<td>msobreo@uw.edu</td>
 						<td>11//07/15 5:37PM</td>
 					</tr>
+				{% for email in emailsdb: %}
+					<tr>
+						<td>{{email['email_address']}}</td>
+						<td>{{email['created_at']}}</td>
+					</tr>
+				{% endfor %}
 				</tbody>
 			</table>
 		</div>
