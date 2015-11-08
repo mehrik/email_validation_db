@@ -14,7 +14,6 @@ def index():
 
 @app.route('/process', methods=['POST'])
 def process():
-	emailsdb = mysql.fetch('SELECT * FROM emails')
 	email = request.form['email']
 
 	if not EMAIL_REGEX.match(email) or len(email) < 1:
@@ -23,6 +22,9 @@ def process():
 
 	query = "INSERT INTO emails (email_address, created_at)\
 			VALUES ('{}', NOW())".format(request.form['email'])
+
 	mysql.run_mysql_query(query)
-	return render_template('success.html', emailsdb=emailsdb)
+	emailsdb = mysql.fetch('SELECT * FROM emails')
+	return render_template('success.html', emailsdb=emailsdb, your_email=email)
+	
 app.run(debug=True)
