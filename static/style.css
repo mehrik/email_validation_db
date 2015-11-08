@@ -2,42 +2,52 @@
 	padding: 0px;
 	margin: 0px auto;
 	font-family: "Helvetica";
-	outline: dashed green thin;
 }
 
 #wrapper {
-	width: 480px;
+	width: 720px;
 }
 
+/*INDEX.HTML*/
 h1, form, .error {
 	text-align: center;
 	margin-top: 10px;
 }
-
 .error {
 	color: red;
 }
 
-#valid-email {
-	background-color: green;
-	border: 2px solid black;
-}
-
+/*SUCCESS.HTML*/
 #valid-email {
 	margin: 15px 0px 15px 30px;
-	width: 65%;
+	width: 55%;
 	line-height: 25px;
 	text-align: center;
 	padding: 5px;
+	border: 2px solid black;
 }
-
+.green {
+	background-color: green;
+}
+.red {
+	background-color: red;
+}
+span {
+	color: yellow;
+	font-style: italic;
+}
+table {
+	margin-left: 40px;
+}
 h3 {
+	margin-bottom: 10px;
 	border-bottom: 2px solid black;
 	display: inline-block;
 }
 th {
-	padding-right: 100px;
+	padding-right: 85px;
 	padding-top: 5px;
+	text-align: none;
 }
 td {
 	padding: 5px 0px;

@@ -6,9 +6,15 @@
 </head>
 <body>
 	<div id='wrapper'>
-		<div id='valid-email'>
-			<p>The email address you entered {{your_email}} is a VALID email address! Thank you!</p>
+	{% if message == 'insert': %}
+		<div id='valid-email' class='green'>
+				<p>The email address you entered <span>{{your_email}}</span> is a VALID email address! Thank you!</p>
 		</div>
+	{% else: %}
+		<div id='valid-email' class='red'>
+				<p>You have deleted <span>{{deleted_email}}</span> from the database!</p>
+		</div>
+	{% endif %}
 		<div id="email-address">
 			<h3>Email Addresses Entered:</h3>
 			<table>
@@ -16,18 +22,22 @@
 					<tr>
 						<th>Email Address:</th>
 						<th>Created on:</th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>msobreo@uw.edu</td>
-						<td>11//07/15 5:37PM</td>
-					</tr>
 				{% for email in emailsdb: %}
-					<tr>
-						<td>{{email['email_address']}}</td>
-						<td>{{email['created_at']}}</td>
-					</tr>
+					<form action='/delete' method='POST'>
+						<tr>
+							<td>{{email['email_address']}}</td>
+							<td>{{email['created_at']}}</td>
+							<td>
+								<input type='hidden' name='delete' value={{email['id']}}>
+								<input type='hidden' name='deleted_email' value={{email['email_address']}}>
+								<input type='submit' value='DELETE'>
+							</td>
+						</tr>
+					</form>
 				{% endfor %}
 				</tbody>
 			</table>
